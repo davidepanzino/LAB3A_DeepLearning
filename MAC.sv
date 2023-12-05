@@ -1,4 +1,4 @@
-module MAC #(parameter int_part=3, fract_part=2)(
+module MAC #(parameter int_part=3, fract_part=5)(
     input logic signed [int_part+fract_part-1:0] a,
     input logic signed [int_part+fract_part-1:0] b,
     input logic signed [int_part+fract_part-1:0] c,
@@ -13,7 +13,5 @@ module MAC #(parameter int_part=3, fract_part=2)(
     assign temp_c = c<<fract_part;
     assign temp_mac = mult + temp_c;
     assign mac = {temp_mac[2*(int_part+fract_part)], temp_mac[int_part+2*fract_part-2:fract_part]};    
-    
-    //assign mac = a*b + c; //for fast check of the results in the test bench
     
 endmodule
