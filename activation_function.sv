@@ -1,4 +1,4 @@
-module activation_function #(parameter int_part=3, fract_part=5, N=8)(
+module activation_function #(parameter int_part=3, fract_part=5, N=4)(
     input logic signed [int_part+fract_part-1:0] y,
     input logic [1:0] chosen_function,
     output logic signed [int_part+fract_part-1:0] out
