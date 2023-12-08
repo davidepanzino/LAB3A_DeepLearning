@@ -18,7 +18,7 @@ logic signed [Width-1:0] weights [N-1:0][N-1:0];
 
 FSM_parallel#(Width, N, M) fsm(clk, rst_n, cnt, load_enable);
 Data#(Width, N) data_reg(clk, rst_n, load_enable, initial_inputs, data_inputs, data_outputs);
-Weight#(Width, N, M) weight_mem(cnt, weights);
+Weight#(Width, N, M) weight_mem(cnt-1, weights);
 
 genvar i;
 generate
@@ -27,5 +27,8 @@ generate
     end        
 endgenerate
 
+always_comb begin
+    final_outputs = (fsm.current_state == 2'b10)? data_outputs : '{default: '0};
+end
 	
 endmodule
