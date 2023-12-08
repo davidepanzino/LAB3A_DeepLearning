@@ -8,9 +8,9 @@ logic signed [Width-1:0] bias;
 
 initial begin
 	 
-	foreach(weights[i,j,k]) weights[i][j][k] = $rand;
+	foreach(weights[i,j,k]) weights[i][j][k] = $random;
 	
-	bias = $rand;
+	bias = $random;
 end
 
 always_comb begin 
