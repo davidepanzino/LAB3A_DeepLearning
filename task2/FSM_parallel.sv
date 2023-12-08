@@ -29,7 +29,7 @@ end
 
 always_comb begin 
 	next_cnt = (next_state == computing)? cnt + 1 : 0;
-	load_enable = (current_state == computing && cnt == 1)? 1 : 0;
+	load_enable = (current_state == idle && next_state == computing)? 1 : 0;
 end
 
 assign cnt_out = cnt;
