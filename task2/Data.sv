@@ -7,7 +7,7 @@ module Data #(parameter Width = 8, N = 4) (
 
 always_ff @(posedge clk, negedge rst_n) begin 
 	if(!rst_n) begin
-		output_values <= 0;
+		output_values <= '{default: '0};
 	end else begin
 		output_values <= input_values;
 	end

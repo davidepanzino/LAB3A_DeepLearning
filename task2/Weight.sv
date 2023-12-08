@@ -7,7 +7,9 @@ logic signed [Width-1:0] weights [M-1:0][N-1:0][N-1:0];
 logic signed [Width-1:0] bias;
 
 initial begin
-	foreach(weights[i]) weights[i] = $rand; 
+	 
+	foreach(weights[i,j,k]) weights[i][j][k] = $rand;
+	
 	bias = $rand;
 end
 

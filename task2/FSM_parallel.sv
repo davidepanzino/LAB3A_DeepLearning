@@ -1,7 +1,7 @@
 module FSM_parallel #(parameter Width = 8, N = 4, M = 3)(
 	input logic clk,    
 	input logic rst_n,
-	output logic [$clog2(M)-1:0] cnt
+	output logic [$clog2(M)-1:0] cnt_out
 );
 
 logic [$clog2(M)-1:0] cnt, next_cnt;
@@ -18,7 +18,7 @@ always_ff @(posedge clk, negedge rst_n) begin
 end
 
 always_comb begin 
-	case (current_state):
+	case (current_state)
 		idle: next_state = computing;
 		computing: next_state = (cnt < M) ? computing : done;
 		done: next_state = idle;
@@ -29,5 +29,7 @@ end
 always_comb begin 
 	next_cnt = (next_state == computing)? cnt + 1 : 0;
 end
+
+assign cnt_out = cnt;
 
 endmodule
